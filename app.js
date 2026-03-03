@@ -1,6 +1,6 @@
 const RATE_PER_NIGHT = 300;
 const FLAT_DEPOSIT = 100;
-const WHATSAPP_NUMBER = "60123456789";
+const WHATSAPP_LINK = "https://wasap.my/6014-3388944/DiniesHomestay";
 const STORAGE_KEY = "homestay_bookings_v1";
 const DRAFT_KEY = "homestay_booking_draft_v2";
 const LAST_BOOKING_KEY = "homestay_booking_last_v1";
@@ -104,9 +104,8 @@ function createBookingCode() {
   return `SD-${partA}${partB}`;
 }
 
-function whatsappLink(message) {
-  const text = message || "Hai, saya berminat untuk tempah Seri Damai Homestay.";
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+function whatsappLink() {
+  return WHATSAPP_LINK;
 }
 
 function setYear() {
@@ -119,17 +118,75 @@ function setYear() {
 function attachChatButtons() {
   const buttons = document.querySelectorAll(".chat-owner");
   buttons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      window.open(
-        whatsappLink("Hai, saya mahu bertanya tentang ketersediaan Seri Damai Homestay."),
-        "_blank"
-      );
+    btn.addEventListener("click", (event) => {
+      event?.preventDefault?.();
+      window.open(whatsappLink(), "_blank");
     });
   });
 }
 
 function initLandingPage() {
-  // Landing page currently static; this hook remains for future enhancements.
+  const locationColumns = document.querySelector("[data-location-columns]");
+  const toggleButton = document.querySelector("[data-toggle-locations]");
+
+  if (locationColumns && toggleButton) {
+    const toggleWrapper = toggleButton.closest(".location-toggle");
+    let collapsed = true;
+    const mq = window.matchMedia("(max-width: 640px)");
+
+    function updateCollapseState() {
+      if (!mq.matches) {
+        locationColumns.classList.remove("collapsed");
+        collapsed = true;
+        if (toggleWrapper) toggleWrapper.hidden = true;
+        toggleButton.textContent = "Lihat semua lokasi";
+        return;
+      }
+
+      if (toggleWrapper) toggleWrapper.hidden = false;
+      locationColumns.classList.toggle("collapsed", collapsed);
+      toggleButton.textContent = collapsed ? "Lihat semua lokasi" : "Sembunyi lokasi";
+    }
+
+    toggleButton.addEventListener("click", () => {
+      collapsed = !collapsed;
+      locationColumns.classList.toggle("collapsed", collapsed);
+      toggleButton.textContent = collapsed ? "Lihat semua lokasi" : "Sembunyi lokasi";
+    });
+
+    if (mq.addEventListener) {
+      mq.addEventListener("change", updateCollapseState);
+    } else if (mq.addListener) {
+      mq.addListener(updateCollapseState);
+    }
+    updateCollapseState();
+  }
+
+  const galleryTrack = document.querySelector("[data-gallery-track]");
+  const prevBtn = document.querySelector("[data-gallery-prev]");
+  const nextBtn = document.querySelector("[data-gallery-next]");
+
+  if (galleryTrack && prevBtn && nextBtn) {
+    const scrollStep = () => Math.max(280, galleryTrack.clientWidth * 0.9);
+
+    function updateNavState() {
+      const maxScroll = Math.max(0, galleryTrack.scrollWidth - galleryTrack.clientWidth - 2);
+      prevBtn.disabled = galleryTrack.scrollLeft <= 0;
+      nextBtn.disabled = galleryTrack.scrollLeft >= maxScroll;
+    }
+
+    prevBtn.addEventListener("click", () => {
+      galleryTrack.scrollBy({ left: -scrollStep(), behavior: "smooth" });
+    });
+
+    nextBtn.addEventListener("click", () => {
+      galleryTrack.scrollBy({ left: scrollStep(), behavior: "smooth" });
+    });
+
+    galleryTrack.addEventListener("scroll", updateNavState, { passive: true });
+    window.addEventListener("resize", updateNavState);
+    requestAnimationFrame(updateNavState);
+  }
 }
 
 function initBookingPage() {

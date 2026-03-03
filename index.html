@@ -14,7 +14,6 @@
             <span class="badge-title">Dinie's Homestay · Petaling Jaya</span>
             <a class="badge-link" href="https://g.co/kgs/pt5vigD" target="_blank" rel="noopener">Google</a>
             <a class="badge-link" href="https://www.facebook.com/profile.php?id=61555471958670" target="_blank" rel="noopener">Facebook</a>
-            <a class="badge-link" href="https://t.me/+LeYvDBY52ppjYzg1" target="_blank" rel="noopener">Telegram</a>
           </div>
           <h1>Selamat datang ke Dinie's Homestay</h1>
           <p>
@@ -38,7 +37,13 @@
           </div>
           <div class="cta-buttons">
             <a class="btn primary" href="booking.html">Tempah Sekarang</a>
-            <button class="btn outline" type="button" data-chat-owner>Hubungi Tuan Rumah</button>
+            <a
+              class="btn outline chat-owner"
+              href="https://wasap.my/6014-3388944/DiniesHomestay"
+              target="_blank"
+              rel="noopener"
+              >Hubungi Tuan Rumah</a
+            >
           </div>
         </div>
         <div class="hero-media">
@@ -79,7 +84,7 @@
 
       <section class="wide-card location-card">
         <h3>Lokasi Sekitar</h3>
-        <div class="location-columns">
+        <div class="location-columns" data-location-columns>
           <ul>
             <li>PJCC</li>
             <li>Sunway Lagoon &amp; Pyramid</li>
@@ -101,20 +106,53 @@
             <li>Pasar malam, stesen minyak &amp; Komuter</li>
           </ul>
         </div>
+        <div class="location-toggle">
+          <button class="btn outline small" type="button" data-toggle-locations>Lihat semua lokasi</button>
+        </div>
       </section>
 
-      <section class="wide-card">
-        <h3 class="gallery-title">Galeri rumah</h3>
-        <p>Lihat sendiri suasana dan susun atur ruang Dinie's Homestay.</p>
-        <div class="photo-grid photo-grid-large">
-          <img src="pict2.jpg" alt="Bilik tetamu Dinie's Homestay" />
-          <img src="pict3.jpg" alt="Bilik utama Dinie's Homestay" />
-          <img src="pict4.jpg" alt="Bilik tambahan Dinie's Homestay" />
-          <img src="pict5.jpg" alt="Ruang tamu Dinie's Homestay" />
-          <img src="pict6.jpg" alt="Ruang makan Dinie's Homestay" />
-          <img src="pict7.jpg" alt="Dapur Dinie's Homestay" />
-          <img src="pict8.jpg" alt="Bilik air Dinie's Homestay" />
-          <img src="pict9.jpg" alt="Halaman Dinie's Homestay" />
+      <section class="wide-card gallery-card">
+        <div class="gallery-header">
+          <div>
+            <h3 class="gallery-title">Galeri rumah</h3>
+            <p>Lihat sendiri suasana dan susun atur ruang Dinie's Homestay.</p>
+          </div>
+          <div class="gallery-actions">
+            <button class="gallery-nav" type="button" data-gallery-prev aria-label="Gambar sebelumnya">
+              <span aria-hidden="true">&#8592;</span>
+            </button>
+            <button class="gallery-nav" type="button" data-gallery-next aria-label="Gambar seterusnya">
+              <span aria-hidden="true">&#8594;</span>
+            </button>
+          </div>
+        </div>
+        <div class="gallery-slider" data-gallery>
+          <div class="gallery-track" data-gallery-track>
+            <figure class="gallery-item">
+              <img src="pict2.jpg" alt="Bilik tetamu Dinie's Homestay" />
+            </figure>
+            <figure class="gallery-item">
+              <img src="pict3.jpg" alt="Bilik utama Dinie's Homestay" />
+            </figure>
+            <figure class="gallery-item">
+              <img src="pict4.jpg" alt="Bilik tambahan Dinie's Homestay" />
+            </figure>
+            <figure class="gallery-item">
+              <img src="pict5.jpg" alt="Ruang tamu Dinie's Homestay" />
+            </figure>
+            <figure class="gallery-item">
+              <img src="pict6.jpg" alt="Ruang makan Dinie's Homestay" />
+            </figure>
+            <figure class="gallery-item">
+              <img src="pict7.jpg" alt="Dapur Dinie's Homestay" />
+            </figure>
+            <figure class="gallery-item">
+              <img src="pict8.jpg" alt="Bilik air Dinie's Homestay" />
+            </figure>
+            <figure class="gallery-item">
+              <img src="pict9.jpg" alt="Halaman Dinie's Homestay" />
+            </figure>
+          </div>
         </div>
       </section>
     </main>
